@@ -37,11 +37,15 @@ void L293D::Stop() {
 
 void L293D::Forward() {
   digitalWrite(FirstPin, HIGH); /* Change direction of the motor */
+  if (FirstPin != SecondPin)
+    digitalWrite(SecondPin, LOW);
   analogWrite(EnablePin, GetSpeed());     /* Change the speed */
 }
 
 
 void L293D::Reverse() {
   digitalWrite(FirstPin, LOW);  /* Change direction of the motor */
+  if (FirstPin != SecondPin)
+    digitalWrite(SecondPin, HIGH);
   analogWrite(EnablePin, GetSpeed());     /* Change the speed */
 }
